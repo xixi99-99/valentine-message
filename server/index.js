@@ -43,8 +43,8 @@ app.get("/api/:card_id", async (req, res) => {
 // 新增卡片
 app.post("/api", async (req, res) => {
   try {
-    const { message } = req.body;
-    const newMessage = new Card({ message });
+    const { to, message, from} = req.body;
+    const newMessage = new Card({ to, message, from });
     await newMessage.save();
 
     res.status(201).json({

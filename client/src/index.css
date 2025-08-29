@@ -1,13 +1,179 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+*{
+  font-family: "Cookie", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+:root{
+  --bg-1:#e7e8f0;         /* 淡紫灰 */
+  --bg-2:#f6e6ff;         /* 粉紫 */
+  --bg-3:#ffd7b8;         /* 橘粉 */
+  --text:#1f2430;
+  --muted:#6b7280;
+  --accent:#ff9f43;       /* 橘色按鈕 */
+  --ring:#cbd5e1;
+  --card:#ffffffcc;       /* 半透明白 */
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+/* 背景與版心 */
+.page{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.25rem;
+  padding:clamp(16px,3vw,32px);
+  color:var(--text);
+  background:
+    radial-gradient(1200px 500px at 80% 20%, var(--bg-3) 0%, transparent 60%),
+    radial-gradient(1200px 500px at 20% 10%, var(--bg-2) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-1), #f2f4f8);
+}
+
+/* 標題 */
+.page h1{
+  margin:0;
+  font-weight:800;
+  line-height:1.1;
+  font-size:clamp(32px, 7vw, 72px);
+  letter-spacing:.2px;
+}
+
+
+/* 副標（若有） */
+.page .subtitle{
+  margin-top:.25rem;
+  color:var(--muted);
+  font-size:clamp(14px,2.3vw,18px);
+}
+
+/* To / From 信件抬頭 */
+.letter-header{
+  width:min(900px, 92vw);
+  display:flex;
+  justify-content:space-between;
+  gap:.75rem;
+  margin-inline:auto;
+}
+.letter-header .to,
+.letter-header .from{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  background:var(--card);
+  border:1px solid var(--ring);
+  padding:.6rem .8rem;
+  border-radius:999px;
+  box-shadow:var(--shadow);
+  backdrop-filter:saturate(120%) blur(4px);
+}
+.letter-header label{
+  font-weight:600;
+  letter-spacing:.2px;
+}
+.letter-header input{
+  border:none;
+  outline:none;
+  background:transparent;
+  min-width:140px;
+  font-size:16px;
+}
+
+/* 主要輸入（訊息） */
+.msg-input{
+  width:min(900px, 92vw);
+  min-height:160px;
+  resize:vertical;
+  padding:1rem 1.1rem;
+  background:var(--card);
+  border:1px solid var(--ring);
+  border-radius:calc(var(--radius) + 8px);
+  box-shadow:var(--shadow);
+  font-size:16px;
+  line-height:1.6;
+  outline:none;
+}
+.msg-input::placeholder{ color:#9aa3af; }
+
+/* 送出按鈕 */
+.btn-primary{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  margin-top:1rem;
+  padding:.9rem 1.2rem;
+  border-radius:999px;
+  border:1px solid transparent;
+  background:var(--accent);
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.2px;
+  box-shadow:0 8px 20px rgba(255,159,67,.35);
+  cursor:pointer;
+  transition:transform .08s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-primary:hover{ filter:brightness(1.03); }
+.btn-primary:active{ transform:translateY(1px); }
+
+/* 分享區 */
+.share{
+  width:min(900px, 92vw);
+  margin-top:2rem;
+  text-align:center;
+}
+.share p{ margin:.25rem 0 .5rem; color:var(--muted); }
+.share a{
+  display:inline-block;
+  margin-top:.75rem;
+  padding:.5rem .9rem;
+  border-radius:999px;
+  border:1px dashed var(--ring);
+  background:#fff;
+  text-decoration:none;
+  color:#334155;
+  font-size:.95rem;
+  word-break:break-all;
+}
+
+/* CardPage 內容容器（閱讀頁） */
+.cardpage{
+  max-width:min(900px, 92vw);
+  margin:clamp(16px,4vw,48px) auto;
+  text-align:center;
+}
+.cardpage h1{ font-size:clamp(28px,6vw,44px); }
+.cardpage p{
+  font-size:clamp(16px,2.8vw,20px);
+  background:var(--card);
+  border:1px solid var(--ring);
+  padding:1.25rem 1.5rem;
+  border-radius:calc(var(--radius) + 8px);
+  box-shadow:var(--shadow);
+}
+
+/* RWD：小螢幕下 To/From 垂直排列 */
+@media (max-width: 640px){
+  .letter-header{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .letter-header .to,
+  .letter-header .from{
+    border-radius:14px;
+  }
 }

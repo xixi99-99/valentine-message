@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "https://valentine-message-server.vercel.app/api";
+// const API_URL = "https://valentine-message-server.vercel.app/api"; // online test
+const API_URL = "http://localhost:8080/api"; //local test
 
 function CardPage() {
   const { id } = useParams(); // 讀取 URL 參數 :id
@@ -23,13 +24,22 @@ function CardPage() {
       });
   }, [id]);
 
-  if (loading) return <p>載入中...</p>;
-  if (error) return <p style={{color:"red"}}>{error}</p>;
+  if (loading) return <p>想跟你說...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div style={{padding:"2rem", textAlign:"center"}}>
-      <h1>💌 情人節卡片</h1>
-      <p style={{fontSize:"1.2rem"}}>{card.message}</p>
+    <div className="page">
+      <div className="cardpage">
+        <h1>💌 情人節卡片</h1>
+
+        <p style={{ fontSize: "1.2rem", textAlign: "center" }}>
+          <span style={{ display: "block", textAlign: "left", marginBottom: "2rem" }}>Dear {card.to},</span>
+          <br />
+          {card.message}
+          <br />
+          <span style={{ display: "block", textAlign: "right", marginTop: "2rem" }}>From {card.from}</span>
+        </p>
+      </div>
     </div>
   );
 }

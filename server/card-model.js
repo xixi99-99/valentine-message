@@ -1,10 +1,20 @@
 import mongoose from "mongoose";
 
 const cardSchema = new mongoose.Schema({
+  to:{
+    type: String,
+    required: true,
+    maxlength: 500 
+  },
   message: {
     type: String,
     required: true,   // 使用者必填
     maxlength: 1000   // 限制長度避免濫用
+  },
+  from:{
+    type: String,
+    required: true,
+    maxlength: 500 
   }
   // },
   // mediaUrl: {
