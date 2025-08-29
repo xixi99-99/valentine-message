@@ -1,7 +1,7 @@
 import React, { use, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import axios from 'axios'
-const API_URL =  'http://localhost:8080/api'
+const API_URL =  'https://valentine-message-server.vercel.app/api'
 
 
 export default function Home() {
