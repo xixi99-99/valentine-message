@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// const API_URL = "https://valentine-message-server.vercel.app/api"; // online test
-const API_URL = "http://localhost:8080/api"; //local test
+const API_URL = "https://valentine-message-server.vercel.app/api"; // online test
+// const API_URL = "http://localhost:8080/api"; //local test
 
 function CardPage() {
   const { id } = useParams(); // 讀取 URL 參數 :id
